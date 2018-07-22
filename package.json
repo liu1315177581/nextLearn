@@ -1,0 +1,27 @@
+{
+    "name": "next_project",
+    "version": "1.0.0",
+    "description": "next的一个项目",
+    "main": "index.js",
+    "scripts": {
+        "dev": "set NODE_ENV=dev && node server.js",
+        "start": "set NODE_ENV=pro && node server.js",
+        "build": "next build",
+        "export": "next export"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.3",
+        "isomorphic-unfetch": "^2.1.0",
+        "next": "^6.1.1",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1"
+    },
+    "devDependencies": {
+        "@zeit/next-css": "^0.2.0",
+        "@zeit/next-less": "^0.3.0",
+        "cross-env": "^5.2.0",
+        "less": "^3.7.1"
+    }
+}
