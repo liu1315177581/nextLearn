@@ -1,6 +1,6 @@
 const express = require('express')
 const next = require('next')
-const dev = process.env.NODE_ENV.trim() !== 'pro'
+const dev = process.env.NODE_ENV !== 'pro'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 const getConfig =  require('next/config')
