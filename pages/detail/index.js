@@ -2,10 +2,10 @@ import {
     Component
 } from 'react'
 import dynamic from 'next/dynamic'
-import Layout from '../components/layout'
+import Layout from '../../components/layout/index'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
-import detail from './css/detail.less'
+import detail from './index.less'
 import getConfig from 'next/config'
 
 class Index extends Component {
@@ -27,14 +27,17 @@ class Index extends Component {
         return (
             <Layout>
 				<div>
-					<div className={detail.leftContent}>
+					<div className={detail.left_content}>
                         <h2 className={detail.header}>THE LEGEND OF TARZAN - Official Trailer 2</h2>
-                        <img src="/static/logo.jpg"/>
+                        <img className={detail.big_img} src="/static/logo.jpg"/>
+						<div className={detail.banner_text}>
+							<p>	这是一段文字简介，这是一段文字简介，这是一段文字简介，这是一段文字简介，这是一段文字简介，这是一段文字简介，这是一段文字简介，这是一段文字简介，</p>
+						</div>
 					</div>
 				</div>
 				
 				<div>
-					<div className={detail.reightContent}>
+					<div className={detail.reight_content}>
                         {/*<ul>
                             {this.props.shows.map(({show}) => (
                                 <li key={show.id}>
