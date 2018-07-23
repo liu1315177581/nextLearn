@@ -1,9 +1,6 @@
 {
   "presets": [
-  	"next/babel",
-  	["env", { "modules": false }],
-    "stage-2"
+  	"next/babel"
   ],
-  "plugins": ["transform-runtime"],
-  "comments": false,
+  "plugins": []
 }

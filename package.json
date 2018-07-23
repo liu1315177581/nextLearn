@@ -4,8 +4,8 @@
     "description": "next的一个项目",
     "main": "index.js",
     "scripts": {
-        "dev": "set NODE_ENV=dev && node server.js",
-        "start": "set NODE_ENV=pro && node server.js",
+        "dev": "set NODE_ENV=dev&& node server.js",
+        "start": "set NODE_ENV=pro&& node server.js",
         "build": "next build",
         "export": "next build && next export",
         "analyze": "cross-env ANALYZE=1 next build"
