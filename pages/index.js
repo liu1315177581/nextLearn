@@ -26,7 +26,7 @@ class Index extends Component {
     render() {
         return (
             <Layout>
-				<h1 className={styles.example}>Batman TV Shows</h1>
+				
 				<img src="/static/logo.jpg"/>
 				{/*<ul>
 					{this.props.shows.map(({show}) => (
