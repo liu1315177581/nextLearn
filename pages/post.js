@@ -4,6 +4,7 @@ import { withRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 
 
+
 const Content = withRouter((props) => (
     <div>
 		<h1>{props.shows.id}</h1>
