@@ -3,26 +3,26 @@ import style from './index.less'
 
 
 
-export default class Carousel extends Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			banner_pointer:0
-		}
-	}
+export default class Carousel extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            banner_pointer: 0
+        }
+    }
 
-	componentDidMount(){
+    componentDidMount() {
 
-	}
+    }
 
 
-	switchSlideFun(index){
+    switchSlideFun(index) {
 
-	}
+    }
 
-	render(){
-		return(
-			<div className={style.container}>
+    render() {
+        return (
+            <div className={style.container}>
 				<div className={style.left}>
 					<section className={style.banner_con}>
 						{
@@ -51,8 +51,10 @@ export default class Carousel extends Component{
                         this.props.banner_message.map((item,index)=>{
                             return (
                                 <li onClick={this.switchSlideFun.bind(this,index)} className={[style.banner_navigateLi_home]} key={index}>
-                                    <a href={item.url_link} className="clearfix">
-                                        <img className={style.imgContent} src={item.img} alt=""/>
+                                    <a href={item.url_link}>
+                                   		<div className={style.img_con}>
+                                        	<img className={style.img} src={item.img} alt=""/>
+                                        </div>
                                         <dl className={style.textContent}>
                                             <dt className={[this.state.index == index ? 'dt_active' : '']}>
                                                 {item.title}
@@ -68,6 +70,6 @@ export default class Carousel extends Component{
                     }
 				</div>
 			</div>
-		)
-	}
+        )
+    }
 }
