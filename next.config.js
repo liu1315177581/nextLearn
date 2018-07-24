@@ -1,6 +1,7 @@
 const withLess = require('@zeit/next-less');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { ANALYZE } = process.env
+const path = require('path')
 
 module.exports = withLess({
     /* less模块 */
@@ -24,6 +25,12 @@ module.exports = withLess({
                 openAnalyzer: true
             }))
         }
+
+        /* 设置快捷引入 */
+        let optionsObj = {
+            '@': path.join(__dirname,'./')
+        }
+        config.resolve.alias = {...config.resolve.alias,...optionsObj};
         return config
     },
     /* 静态界面路由配置 */

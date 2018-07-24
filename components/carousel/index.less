@@ -1,0 +1,132 @@
+/* 公共开头 */
+.clearfix_fun(){
+    &:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }   
+}
+
+/* 公共结束 */
+.container{
+	.clearfix_fun();
+	height: 500px;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    backface-visibility: hidden;
+    user-select: none;
+
+	.left{
+		float: left;
+		width: 80%;
+		height: 100%;
+
+		.banner_con{
+			.clearfix_fun();
+			height: 100%;
+			position: relative;
+
+			.banner_item_img{
+			    position: absolute;
+			    width: 100%;
+			    height: 100%;
+			    opacity: 0;
+			    
+			    .images{
+				    width: 100%;
+				    height: 100%;
+				}
+
+				.popUp_banner_home{
+					position: absolute;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				    height: 0.78125rem;
+				    background: rgba(0,0,0,.65);
+
+				    h3{
+					    width: 1.041667rem;
+					    height: 0.1875rem;
+					    text-align: center;
+					    line-height: 0.1875rem;
+					    font-weight: bold;
+					    background-color: #ff8d1b;
+					    margin: 0.177083rem 0 0 0.520833rem;
+					    font-size: 0.104167rem;
+					    color: #fff;
+					}
+
+					p{
+					    height: 0.375rem;
+					    padding: 0.052083rem 0.520833rem;
+					    line-height: 0.145833rem;
+					    text-overflow: ellipsis;
+					    white-space:nowrap;
+					    overflow: hidden;
+					    color: #fff;
+					}
+				}
+			}
+		}
+	}
+	.right{
+		float: right;
+		width: 20%;
+		min-height: 100%;
+		background: #1a1920;
+
+		.banner_navigateLi_home{
+		    height: 100px;
+		    border-top: 1px solid #2a2930;
+		    border-bottom:  1px solid #0a0910;
+		    margin-top: 2px;
+
+		    .imgContent{
+		    	float: left;
+			    width: 91px;
+    			height: 91px;
+			    border: 1px solid #656469;
+			    margin: 4px;
+			}
+
+			.textContent{
+			    width: 270px;
+			    height: 91px;
+			    float: left;
+			    dt{
+				    line-height: 0.166667rem;
+				    font-size: 0.09375rem;
+				    color: #ff8d1b;
+				    text-align: left;
+				    font-weight: bold;
+				}
+				.dt_active{
+				    color: #000;
+				}
+
+				dd{
+				    line-height: 0.114583rem;
+				    height: 0.4375rem;
+				    font-size: 0.072917rem;
+				    color: #fff;
+				    word-wrap: break-word;
+				    overflow: hidden;
+				}
+				.dd_active{
+				    color: #000;
+				}
+			}
+		}
+		.banner_navigateLi_home_active{
+		    background-color: #ff8d1b;
+		}
+	}
+}

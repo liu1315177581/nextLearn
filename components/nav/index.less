@@ -1,0 +1,72 @@
+/* 公共部分开始 */
+.clearfix_fun(){
+    &:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }   
+}
+
+.clearfix{
+    .clearfix_fun();
+}
+
+/* 公共部分结束 */
+
+
+
+/* 主体部分 */
+.movies_nav{
+    margin-top: 8px;
+	background: #FF8D1B;
+    user-select: none;
+}
+.container{
+    .clearfix_fun();
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    div{
+        float: left;
+        border-right: 1px dotted #fff;
+        border-left: 1px dotted transparent;
+        margin-left: -1px;
+        width: 14.27%;
+        text-align: center;
+        padding: 15px 15px;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        transition: .2s ease-in;
+        &:hover{
+            background: #212121;
+        }
+    }
+    div:nth-of-type(1){
+        border-left: 1px dotted #fff;
+    } 
+    .active_li{
+        background: #212121;
+        border-color: #212121 !important;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 1173px;
+    }
+}
+@media screen and (max-width: 970px) and (max-width: 1170px) {
+    .container {
+        width: 970px;
+    }
+}
+@media screen and (max-width: 970px) {
+    .container {
+        width: 750px;
+    }
+}
