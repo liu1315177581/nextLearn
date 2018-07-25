@@ -80,7 +80,7 @@ class Index extends Component {
 
     render() {
         return (
-            <Layout navigation_message={this.props.navigation_message}>
+            <Layout>
                 <Carousel banner_message={this.props.banner_message}/>
             </Layout>
         )

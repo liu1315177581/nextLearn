@@ -44,7 +44,7 @@ class Index extends Component {
 
     render() {
         return (
-            <Layout  navigation_message={this.props.navigation_message}>
+            <Layout>
 				<div>
 					<div className={detail.left_content}>
                         <h2 className={detail.header}>THE LEGEND OF TARZAN - Official Trailer 2</h2>
