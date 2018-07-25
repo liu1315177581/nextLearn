@@ -89,8 +89,7 @@
 		    height: 100px;
 		    border-top: 1px solid #2a2930;
 		    border-bottom:  1px solid #0a0910;
-		    margin-top: 2px;
-		    
+		    overflow: hidden;
 			
 			.img_con{
 				width: 91px;
@@ -109,25 +108,35 @@
 				position: absolute;
 				top: 0;
 				padding-left: 101px;
-			    height: 100px;
+			    overflow: hidden;
+			    max-width: 100%;
+			    line-height: 1.2em;
+			    transition-duration: .3s;
+			    border-top: 1px solid #2a2930;
+			    border-bottom: 1px solid #0a0910;
+			    text-shadow: 1px 1px 1px #000;
+
 			    dt{
-				    line-height: 0.166667rem;
-				    font-size: 0.09375rem;
-				    color: #ff8d1b;
+			    	padding: 5px 0 5px 4px;
+				    margin: 0;
+				    font-weight: 700;
 				    text-align: left;
-				    font-weight: bold;
+				    color: #FF8D1B;
 				}
 				.dt_active{
 				    color: #000;
 				}
 
 				dd{
-				    line-height: 0.114583rem;
-				    height: 0.4375rem;
-				    font-size: 0.072917rem;
-				    color: #fff;
+				    height: 82px;
+				    display: block;
 				    word-wrap: break-word;
-				    overflow: hidden;
+				    max-width: 95%;
+				    padding: 0 0 0 4px;
+				    margin: 0;
+				    font-size: 12px;
+				    text-align: left;
+				    color: #fff;
 				}
 				.dd_active{
 				    color: #000;

@@ -21,8 +21,10 @@ export default withRouter(class Nav extends Component{
 		this.setState(data)
 	}
 
-	componentDidMount(){
 
+
+	componentDidMount(){
+		console.log(this.props)
 	}
 
 
