@@ -7,17 +7,61 @@ export default class Carousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            banner_pointer: 0
+            /* 轮播标识 */
+            banner_pointer: 0,
+            /* 定时器 */
+            timer: null,
+            /* 轮播间隔时间 */
+            time: 3000
         }
     }
 
     componentDidMount() {
+        /* 界面初始化轮播 */
+        this.autoSideFun()
+    }
+
+    /* 定时器执行的函数 */
+    timeFun() {
+        this.state.banner_pointer++;
+        if (this.state.banner_pointer > 4) {
+            this.state.banner_pointer = 0;
+        }
+        let data = Object.assign({}, this.state, { banner_pointer: this.state.banner_pointer });
+        this.setState(data);
+
 
     }
 
+    /* 轮播函数 */
+    autoSideFun() {
+        this.state.timer = setInterval(this.timeFun.bind(this), this.state.time);
+        let timer = Object.assign({}, this.state, { timer: this.state.timer });
+        this.setState(timer);
+    }
 
-    switchSlideFun(index) {
+    /* 点击切换函数 */
+    switchSlideFun(index, e) {
+        e.stopPropagation();
+        let data = Object.assign({}, this.state, { banner_pointer: index });
+        this.setState(data);
+        var item = setTimeout(() => {
+            clearInterval(item);
+            item = null;
+            clearInterval(this.state.timer);
+            this.autoSideFun();
+        })
+    }
 
+    /* 优化渲染 */
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!_.isEqual(this.props, nextProps) || !_.isEqual(this.state, nextState)) {
+            /*console.log('渲染')*/
+            return true
+        } else {
+            /*console.log('不渲染')*/
+            return false
+        }
     }
 
     render() {
@@ -50,16 +94,16 @@ export default class Carousel extends Component {
                     {
                         this.props.banner_message.map((item,index)=>{
                             return (
-                                <li onClick={this.switchSlideFun.bind(this,index)} className={[style.banner_navigateLi_home]} key={index}>
+                                <li onClick={this.switchSlideFun.bind(this,index)} style={this.state.banner_pointer === index ? {'backgroundColor':'#ff8d1b'}:{}} className={style.banner_navigateLi_home} key={index}>
                                     <a href={item.url_link}>
                                    		<div className={style.img_con}>
                                         	<img className={style.img} src={item.img} alt=""/>
                                         </div>
                                         <dl className={style.textContent}>
-                                            <dt className={[this.state.index == index ? 'dt_active' : '']}>
+                                            <dt style={this.state.banner_pointer === index ? {'color':'#000'}:{}}>
                                                 {item.title}
                                             </dt>
-                                            <dd className={[this.state.index == index ? 'dd_active' : '']}>
+                                            <dd style={this.state.banner_pointer === index ? {'color':'#000'}:{}}>
                                                 {item.text}
                                             </dd>
                                         </dl>

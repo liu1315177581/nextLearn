@@ -7,7 +7,7 @@ export default class Layout extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            navigation_message:[{
+            navigation_message: [{
                 btn_text: '电影',
                 key: 'film'
             }, {
