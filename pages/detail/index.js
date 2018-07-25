@@ -19,13 +19,32 @@ class Index extends Component {
     	}
         const data = await res.json()
         return {
-            shows: data
+            shows: data,
+            navigation_message: [{
+                btn_text: '电影',
+                key: 'film'
+            }, {
+                btn_text: '电视剧',
+                key: 'tv_play'
+            }, {
+                btn_text: '综艺',
+                key: 'variety'
+            }, {
+                btn_text: '体育',
+                key: 'sports'
+            }, {
+                btn_text: '动漫',
+                key: 'cartoon'
+            }, {
+                btn_text: '搞笑短视频',
+                key: 'short_video'
+            }],
         }
 	}
 
     render() {
         return (
-            <Layout>
+            <Layout  navigation_message={this.props.navigation_message}>
 				<div>
 					<div className={detail.left_content}>
                         <h2 className={detail.header}>THE LEGEND OF TARZAN - Official Trailer 2</h2>
