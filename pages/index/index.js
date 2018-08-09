@@ -82,6 +82,7 @@ class Index extends Component {
         return (
             <Layout>
                 <Carousel banner_message={this.props.banner_message}/>
+                <Link href="/detail"><a>go to detail</a></Link>
             </Layout>
         )
     }
