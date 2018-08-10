@@ -7,18 +7,37 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import detail from './index.less'
 import getConfig from 'next/config'
+
 const api = getConfig().publicRuntimeConfig.api;
 
 
 class Index extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            detail_message: {}
+        }
+
+    }
+    async switchSlideFun(index, id) {
+        console.log(index)
+        //
+        let res = null;
+        let api = getConfig().publicRuntimeConfig.api;
+
+        res = await fetch(api + '/v2/movie/subject/' + id)
+        const data = await res.json()
+        this.setState({detail_message: data});
+    }
+
 
     static async getInitialProps(context) {
 
         let res = null;
         let api = getConfig().publicRuntimeConfig.api;
-        if(context.req){
-            res = await fetch(api+'v2/movie/in_theaters')
-        }else{
+        if (context.req) {
+            res = await fetch(api + 'v2/movie/in_theaters')
+        } else {
             res = await fetch('v2/movie/in_theaters')
         }
         const data = await res.json()
@@ -26,70 +45,26 @@ class Index extends Component {
         console.log(data)
 
         return {
-            detail_message:[
-                {
-                id: 1,
-                title: 'Tarzan',
-                text: ' Tarzan, having acclimated to life in London, is called back to his former home in the jungle to investigate the activities at a mining encampment.',
-                img: 'http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/5.jpg',
-                item_img:"http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/m5.jpg",
-                url_link: 'javascript:;',
-                show_year: '2016-10-10',
-                score_num: '',
-            }, {
-                id: 2,
-                title: 'Maximum Ride',
-                text: 'Six children, genetically cross-bred with avian DNA, take flight around the country to discover their origins. Along the way, their mysterious past is ...',
-                img: 'http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/4.jpg',
-                item_img:"http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/m4.jpg",
-
-                url_link: 'javascript:;',
-                show_year: '2016-10-10',
-                score_num: '',
-            }, {
-                id:3,
-                title: 'Independence',
-                text: 'The fate of humanity hangs in the balance as the U.S. President and citizens decide if these aliens are to be trusted ...or feared.',
-                img: 'http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/3.jpg',
-                item_img:"http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/m3.jpg",
-
-                url_link: 'javascript:;',
-                show_year: '2016-10-10',
-                score_num: '',
-            }, {
-                id:4,
-                title: 'Central Intelligence',
-                text: 'Bullied as a teen for being overweight, Bob Stone (Dwayne Johnson) shows up to his high school reunion looking fit and muscular. Claiming to be on a... ',
-                img: 'http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/2.jpg',
-                item_img:"http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/m2.jpg",
-
-                url_link: 'javascript:;',
-                show_year: '2016-10-10',
-                score_num: '',
-            }, {
-                id:5,
-                title: 'Ice Age',
-                text: 'In the film\'s epilogue, Scrat keeps struggling to control the alien ship until it crashes on Mars, destroying all life on the planet.',
-                img: 'http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/1.jpg',
-                item_img:"http://demo.cssmoban.com/cssthemes5/cpts_994_bml/images/m1.jpg",
-
-                url_link: 'javascript:;',
-                show_year: '2016-10-10',
-                score_num: '',
-            }],
-            moviesList:data
+            moviesList: data
         }
-	}
+    }
+
+    componentDidMount() {
+        /* 界面初始化轮播 */
+        this.switchSlideFun(0,this.props.moviesList.subjects[0].id)
+    }
+
+
     render() {
         return (
             <Layout>
                 <div className={detail.detail_content}>
                     <div className={detail.left_content}>
-                        <h2 className={detail.header}>{this.props.moviesList.subjects[0].title}</h2>
-                        <img className={detail.big_img} src={this.props.detail_message[0].img}/>
+                        <h2 className={detail.header}>{this.state.detail_message.title}</h2>
+                        <img className={detail.big_img} src={this.state.detail_message.images && this.state.detail_message.images.small}/>
                         <div className={detail.banner_text}>
                             <h5>描述</h5>
-                            <p>	{this.props.detail_message[0].text} </p>
+                            <p>    {this.state.detail_message.summary} </p>
                         </div>
                     </div>
 
@@ -98,8 +73,9 @@ class Index extends Component {
                         <h3>{this.props.moviesList.title}</h3>
 
                         <ul className={detail.detail_list}>
-                            {this.props.moviesList.subjects.map((item,index) => (
-                                <li key={item.id} className={detail.list_item}>
+                            {this.props.moviesList.subjects.map((item, index) => (
+                                <li key={item.id} className={detail.list_item}
+                                    onClick={this.switchSlideFun.bind(this, index, item.id)}>
                                     <div className={detail.item_left_img}>
                                         <img src={item.images.small} alt=""/>
 
@@ -107,28 +83,26 @@ class Index extends Component {
                                     <div className={detail.item_right_text}>
                                         <p className={detail.title}>{item.title}</p>
                                         <p className={detail.casts}>
-                                            {item.casts.map((casts_item,index)=>(
-                                                <a href={casts_item.alt}>{casts_item.name}  </a>
+                                            {item.casts.map((casts_item, index) => (
+                                                <a key={index} href={casts_item.alt}>{casts_item.name}  </a>
                                             ))}
                                         </p>
                                         <p>
-                                            {item.directors.map((directors_item,index)=>(
-                                                <a  href={directors_item.alt}>{directors_item.name}  </a>
+                                            {item.directors.map((directors_item, index) => (
+                                                <a key={index} href={directors_item.alt}>{directors_item.name}  </a>
                                             ))}
                                         </p>
                                         <p className={detail.views}>{item.collect_count} views</p>
                                     </div>
-
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
 
-				
-				
-				<Link href="/?counter=10"><a>Changes with scrolling to top</a></Link>
-			</Layout>
+
+                <Link href="/?counter=10"><a>Changes with scrolling to top</a></Link>
+            </Layout>
         )
     }
 }
