@@ -7,20 +7,27 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import detail from './index.less'
 import getConfig from 'next/config'
+const api = getConfig().publicRuntimeConfig.api;
+
 
 class Index extends Component {
+
     static async getInitialProps(context) {
-    	let res = null;
-    	let api = getConfig().publicRuntimeConfig.api;
-    	if(context.req){
-    		res = await fetch(api+'v2/book/1220562')
-    	}else{
-    		res = await fetch('v2/book/1220562')
-    	}
+
+        let res = null;
+        let api = getConfig().publicRuntimeConfig.api;
+        if(context.req){
+            res = await fetch(api+'v2/movie/in_theaters')
+        }else{
+            res = await fetch('v2/movie/in_theaters')
+        }
         const data = await res.json()
+
+        console.log(data)
+
         return {
-            shows: data,
-            detail_message:[{
+            detail_message:[
+                {
                 id: 1,
                 title: 'Tarzan',
                 text: ' Tarzan, having acclimated to life in London, is called back to his former home in the jungle to investigate the activities at a mining encampment.',
@@ -69,16 +76,16 @@ class Index extends Component {
                 url_link: 'javascript:;',
                 show_year: '2016-10-10',
                 score_num: '',
-            }]
+            }],
+            moviesList:data
         }
 	}
-
     render() {
         return (
             <Layout>
                 <div className={detail.detail_content}>
                     <div className={detail.left_content}>
-                        <h2 className={detail.header}>{this.props.detail_message[0].title}</h2>
+                        <h2 className={detail.header}>{this.props.moviesList.subjects[0].title}</h2>
                         <img className={detail.big_img} src={this.props.detail_message[0].img}/>
                         <div className={detail.banner_text}>
                             <h5>描述</h5>
@@ -87,19 +94,31 @@ class Index extends Component {
                     </div>
 
                     <div className={detail.reight_content}>
-                        <h3>Up Next</h3>
-                        <ul className={detail.detail_list}>
 
-                            {this.props.detail_message.map((item) => (
+                        <h3>{this.props.moviesList.title}</h3>
+
+                        <ul className={detail.detail_list}>
+                            {this.props.moviesList.subjects.map((item) => (
                                 <li key={item.id} className={detail.list_item}>
                                     <div className={detail.item_left_img}>
-                                        <img src={item.item_img} alt=""/>
+                                        <img src={item.images.small} alt=""/>
 
                                     </div>
                                     <div className={detail.item_right_text}>
-
+                                        <p className={detail.title}>{item.title}</p>
+                                        <p className={detail.casts}>
+                                            {item.casts.map((casts_item)=>(
+                                                <a href={casts_item.alt}>{casts_item.name}  </a>
+                                            ))}
+                                        </p>
+                                        <p>
+                                            {item.directors.map((directors_item)=>(
+                                                <a  href={directors_item.alt}>{directors_item.name}  </a>
+                                            ))}
+                                        </p>
+                                        <p className={detail.views}>{item.collect_count} views</p>
                                     </div>
-                                    <p>{item.title}</p>
+
                                 </li>
                             ))}
                         </ul>
@@ -113,5 +132,6 @@ class Index extends Component {
         )
     }
 }
+
 
 export default Index
