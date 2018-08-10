@@ -31,6 +31,7 @@ module.exports = withLess({
             '@': path.join(__dirname,'./')
         }
         config.resolve.alias = {...config.resolve.alias,...optionsObj};
+        config.devtools = true;
         return config
     },
     /* 静态界面路由配置 */

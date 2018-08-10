@@ -98,7 +98,7 @@ class Index extends Component {
                         <h3>{this.props.moviesList.title}</h3>
 
                         <ul className={detail.detail_list}>
-                            {this.props.moviesList.subjects.map((item) => (
+                            {this.props.moviesList.subjects.map((item,index) => (
                                 <li key={item.id} className={detail.list_item}>
                                     <div className={detail.item_left_img}>
                                         <img src={item.images.small} alt=""/>
@@ -107,12 +107,12 @@ class Index extends Component {
                                     <div className={detail.item_right_text}>
                                         <p className={detail.title}>{item.title}</p>
                                         <p className={detail.casts}>
-                                            {item.casts.map((casts_item)=>(
+                                            {item.casts.map((casts_item,index)=>(
                                                 <a href={casts_item.alt}>{casts_item.name}  </a>
                                             ))}
                                         </p>
                                         <p>
-                                            {item.directors.map((directors_item)=>(
+                                            {item.directors.map((directors_item,index)=>(
                                                 <a  href={directors_item.alt}>{directors_item.name}  </a>
                                             ))}
                                         </p>
