@@ -1,5 +1,5 @@
 {
-    "name": "next_project",
+    "name": "new_vedio",
     "version": "1.0.0",
     "description": "next的一个项目",
     "main": "index.js",
@@ -13,17 +13,22 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.16.3",
+        "babel-polyfill": "^6.26.0",
         "isomorphic-unfetch": "^2.1.0",
         "lodash": "^4.17.10",
         "next": "^6.1.1",
         "react": "^16.4.1",
-        "react-dom": "^16.4.1"
+        "react-dom": "^16.4.1",
+        "react-redux": "^5.0.7",
+        "redux": "^4.0.0",
+        "redux-devtools-extension": "^2.13.5",
+        "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
         "@zeit/next-css": "^0.2.0",
         "@zeit/next-less": "^0.3.0",
         "cross-env": "^5.2.0",
+        "express": "^4.16.3",
         "http-proxy-middleware": "^0.18.0",
         "less": "^3.7.1",
         "webpack-bundle-analyzer": "^2.13.1"

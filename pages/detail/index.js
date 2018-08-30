@@ -1,14 +1,17 @@
+/**
+ * 详情页
+ */
 import {
     Component
 } from 'react'
 import dynamic from 'next/dynamic'
-import Layout from '../../components/layout/index'
+import { connect } from 'react-redux'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
-import detail from './index.less'
 import getConfig from 'next/config'
+import Layout from '../../components/layout/index'
+import detail from './index.less'
 
-const api = getConfig().publicRuntimeConfig.api;
 
 
 class Index extends Component {
@@ -20,30 +23,28 @@ class Index extends Component {
 
     }
     async switchSlideFun(index, id) {
-        console.log(index)
-        //
         let res = null;
-        let api = getConfig().publicRuntimeConfig.api;
-
-        res = await fetch(api + '/v2/movie/subject/' + id)
+        res = await fetch('v2/movie/subject/' + id)
         const data = await res.json()
-        this.setState({detail_message: data});
+        this.setState({ detail_message: data });
     }
-
 
     static async getInitialProps(context) {
 
         let res = null;
         let api = getConfig().publicRuntimeConfig.api;
+        let data = {};
+
         if (context.req) {
-            res = await fetch(api + 'v2/movie/in_theaters')
+            res = await fetch(api + '/v2/movie/in_theaters')
+            data = await res.json()
         } else {
+            /* 打开loading */
+            context.reduxStore.dispatch({ type: 'MARK_ONOFF', mark_onoff: true });
             res = await fetch('v2/movie/in_theaters')
+            data = await res.json()
         }
-        const data = await res.json()
-
-        console.log(data)
-
+        context.reduxStore.dispatch({ type: 'MARK_ONOFF', mark_onoff: false });
         return {
             moviesList: data
         }
@@ -51,7 +52,7 @@ class Index extends Component {
 
     componentDidMount() {
         /* 界面初始化轮播 */
-        this.switchSlideFun(0,this.props.moviesList.subjects[0].id)
+        this.switchSlideFun(0, this.props.moviesList.subjects[0].id)
     }
 
 
@@ -107,5 +108,8 @@ class Index extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {}
+}
 
-export default Index
+export default connect(mapStateToProps)(Index)

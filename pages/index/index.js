@@ -1,11 +1,16 @@
+/**
+ * 首页
+ */
 import { Component } from 'react'
 import dynamic from 'next/dynamic'
 import Layout from '@/components/layout'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
-import style from './index.less'
 import getConfig from 'next/config'
-import Carousel from '@/components/carousel'
+
+import style from './index.less'
+import Carousel from '@/components/carousel' /* banner 模块 */
+
 
 
 class Index extends Component {

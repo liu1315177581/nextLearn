@@ -10,7 +10,7 @@ module.exports = withLess({
         importLoaders: 1,
         localIdentName: "[local]___[hash:base64:5]",
     },
-    // distDir: 'build',
+    distDir: 'dist',
     /* 静态id */
     generateBuildId: async () => {
         // For example get the latest git commit hash here
@@ -28,21 +28,19 @@ module.exports = withLess({
 
         /* 设置快捷引入 */
         let optionsObj = {
-            '@': path.join(__dirname,'./')
+            '@': path.join(__dirname, './')
         }
-        config.resolve.alias = {...config.resolve.alias,...optionsObj};
-        config.devtools = true;
+        config.resolve.alias = { ...config.resolve.alias, ...optionsObj };
         return config
     },
     /* 静态界面路由配置 */
     exportPathMap() {
         return {
-            '/': { page: '/' },
-            '/about': { page: '/about' },
+            '/?item_key': { page: '/' }
         }
     },
     /* 客户端和服务端配置字段 */
     publicRuntimeConfig: { // Will be available on both server and client
-        api: 'https://api.douban.com/'
+        api: 'https://api.douban.com'
     }
 })

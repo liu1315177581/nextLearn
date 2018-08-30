@@ -3,15 +3,12 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'pro'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const getConfig =  require('next/config')
+const getConfig = require('next/config')
 
 const api = getConfig.default().publicRuntimeConfig.api;
 const devProxy = {
     '/v2': {
         target: api,
-        /*pathRewrite: {
-            '^/api': '/'
-        },*/
         changeOrigin: true
     }
 }
@@ -22,7 +19,7 @@ app.prepare()
         const server = express()
 
         // Set up the proxy.
-        if (dev && devProxy) {
+        if (devProxy) {
             const proxyMiddleware = require('http-proxy-middleware')
             Object.keys(devProxy).forEach(function(context) {
                 server.use(proxyMiddleware(context, devProxy[context]))

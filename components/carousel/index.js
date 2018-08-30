@@ -1,6 +1,8 @@
+/**
+ * banner 组件
+ */
 import { Component } from 'react'
 import style from './index.less'
-
 
 
 export default class Carousel extends Component {
@@ -16,41 +18,12 @@ export default class Carousel extends Component {
         }
     }
 
-    componentDidMount() {
-        /* 界面初始化轮播 */
-        this.autoSideFun()
-    }
-
-    /* 定时器执行的函数 */
-    timeFun() {
-        this.state.banner_pointer++;
-        if (this.state.banner_pointer > 4) {
-            this.state.banner_pointer = 0;
-        }
-        let data = Object.assign({}, this.state, { banner_pointer: this.state.banner_pointer });
-        this.setState(data);
-
-
-    }
-
-    /* 轮播函数 */
-    autoSideFun() {
-        this.state.timer = setInterval(this.timeFun.bind(this), this.state.time);
-        let timer = Object.assign({}, this.state, { timer: this.state.timer });
-        this.setState(timer);
-    }
+    componentDidMount() {}
 
     /* 点击切换函数 */
     switchSlideFun(index, e) {
         e.stopPropagation();
-        let data = Object.assign({}, this.state, { banner_pointer: index });
-        this.setState(data);
-        var item = setTimeout(() => {
-            clearInterval(item);
-            item = null;
-            clearInterval(this.state.timer);
-            this.autoSideFun();
-        })
+        this.setState({ banner_pointer: index });
     }
 
     /* 优化渲染 */

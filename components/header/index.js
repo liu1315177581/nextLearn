@@ -1,3 +1,6 @@
+/**
+ * 公共头部模块
+ */
 import React, { Component } from 'react'
 import Link from 'next/link'
 import style from './index.less'
