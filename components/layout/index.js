@@ -37,7 +37,7 @@ class Layout extends Component {
         return (
             <div>
 				<Header/>
-                <Nav navigation_message={this.state.navigation_message}/>
+                <Nav/>
 				{this.props.children}
 
                 {/* 遮罩loading 开始 */}
@@ -49,11 +49,11 @@ class Layout extends Component {
                         right: 0,
                         bottom: 0,
                         left: 0,
-                        background: 'rgba(255,255,255,.6)'
+                        background: 'rgba(0,0,0,.6)'
                     }}
                 >
                     <img 
-                        src="https://loading.io/spinners/blocks/lg.rotating-squares-preloader-gif.gif" 
+                        src="/static/images/loading.gif" 
                         style={{
                             position: 'relative',
                             display: 'block',

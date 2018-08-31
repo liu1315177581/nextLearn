@@ -1,0 +1,113 @@
+
+.clearfix_fun(){
+    &:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }   
+}
+
+.iconfont(){
+    font-family:"iconfont" !important;
+    font-size:19px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 auto;
+    .w3_agile_banner_bottom_grid{
+    	.clearfix_fun();
+    	margin-top: 28px;
+    	padding: 0 1em 2em 1em;
+    	box-shadow: 0px 0px 1px #999;
+    	.owl_item{
+    		float: left;
+    		width: 222px;
+    		margin-top: 28px;
+    		.w3l_movie_gride_agile{
+    			width: 82.5% !important;
+				margin: 0 auto !important;
+    			text-align: center;
+			    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35);
+			    margin-bottom: 3%;
+			    position: relative;
+			    padding-left: 0;
+			    cursor: pointer;
+				.hvr_shutter_out_horizontal{
+					width: 100%;
+					height: 268px;
+					display: inline-block;
+				    vertical-align: middle;
+				    -webkit-transform: translateZ(0);
+				    transform: translateZ(0);
+				    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+				    -webkit-backface-visibility: hidden;
+				    backface-visibility: hidden;
+				    -moz-osx-font-smoothing: grayscale;
+				    position: relative;
+				    background: #e1e1e1;
+				    -webkit-transition-property: color;
+				    transition-property: color;
+				    -webkit-transition-duration: 0.3s;
+				    transition-duration: 0.3s;
+				    .img_responsive{
+				    	display: block;
+					    object-fit: cover;
+					    width: 100%;
+					    height: 100%;
+				    }
+				}
+				.agileits_w3layouts_mid_1_home{
+					.w3l_movie_text{
+					    margin: 0.7em 0;
+					    text-align: center;
+					    font-size: 1.4em;
+    					color: #222;
+					}
+					.gile_mid_2_home{
+						.clearfix_fun();
+						p{
+							float: left;
+						    font-size: 1em;
+						    color: #333;
+						    line-height: 22px;
+						}
+						.block_stars{
+							float: right;
+							.fa_star{
+								.iconfont();
+								color: #FF8D1B;
+							}
+						}
+					}
+					
+				}
+    		}
+    	}
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 1173px;
+    }
+}
+@media screen and (max-width: 970px) and (max-width: 1170px) {
+    .container {
+        width: 970px;
+    }
+}
+@media screen and (max-width: 970px) {
+    .container {
+        width: 750px;
+    }
+}

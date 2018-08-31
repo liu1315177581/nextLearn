@@ -13,10 +13,6 @@
 .clearfix{
     .clearfix_fun();
 }
-
-.float_fun(@param:left){
-    float: @param;
-}
 /* 公共部分结束 */
 
 
@@ -34,7 +30,7 @@
 }
 
 .w3layouts_logo {
-    .float_fun(left);
+    float: left;
     a {
         display: block;
         text-decoration: none;
@@ -43,7 +39,7 @@
             font-size: 45px;
             line-height: 1.1;
             color: #212121;
-            background: url('/static/logo.jpg') no-repeat 80px 6px;
+            background: url('/static/images/logo.jpg') no-repeat 80px 6px;
             padding-right: 74.816px;
             font-weight: 900;
             padding-bottom: 13.440px;
@@ -62,13 +58,13 @@
 }
 
 .w3_search {
-    .float_fun(left);
+    float: left;
     width: 40%;
     margin-left: 144px;
     margin-top: 11.2px;
 
     input[type="text"] {
-        .float_fun(left);
+        float: left;
         outline: none;
         border: none;
         background: #EFEFEF;

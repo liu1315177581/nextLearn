@@ -1,6 +1,7 @@
 import App, { Container } from 'next/app'
 import React from 'react'
 import withReduxStore from '@/lib/with-redux-store'
+import { withRouter } from 'next/router'
 import { Provider } from 'react-redux'
 import 'babel-polyfill'
 class MyApp extends App {

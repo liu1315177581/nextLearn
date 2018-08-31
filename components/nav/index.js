@@ -2,13 +2,14 @@
  * 公共导航模块
  */
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import style from './index.less'
 
 
 
-export default withRouter(class Nav extends Component {
+class Nav extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,10 +24,6 @@ export default withRouter(class Nav extends Component {
         }
         that.setState({ active_li: item_key })
     }
-
-
-
-    componentDidMount() {}
 
 
     /* 优化渲染 */
@@ -55,4 +52,14 @@ export default withRouter(class Nav extends Component {
 			</div>
         )
     }
-})
+}
+
+
+const mapStateToProps = (state) => {
+    const { navigation_message } = state
+    return {
+        navigation_message      /* 导航数据 */
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(Nav))

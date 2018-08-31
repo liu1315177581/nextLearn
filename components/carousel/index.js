@@ -2,10 +2,11 @@
  * banner 组件
  */
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import style from './index.less'
 
 
-export default class Carousel extends Component {
+class Carousel extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -47,7 +48,7 @@ export default class Carousel extends Component {
 	                            return (
 	                                <div key={index} style={this.state.banner_pointer === index ? {transition: 'all 1s ease-in',opacity: 1}: {opacity: 0}} className={style.banner_item_img}>
 	                                    <a href={item.url_link}>
-	                                        <img className={style.images} src={item.img} alt=""/>
+	                                        <img className={style.images} src={item.img_max} alt=""/>
 	                                    </a>
 	                                    <div className={style.popUp_banner_home}>
 	                                        <h3>
@@ -70,7 +71,7 @@ export default class Carousel extends Component {
                                 <li onClick={this.switchSlideFun.bind(this,index)} style={this.state.banner_pointer === index ? {'backgroundColor':'#ff8d1b'}:{}} className={style.banner_navigateLi_home} key={index}>
                                     <a href={item.url_link}>
                                    		<div className={style.img_con}>
-                                        	<img className={style.img} src={item.img} alt=""/>
+                                        	<img className={style.img} src={item.img_max} alt=""/>
                                         </div>
                                         <dl className={style.textContent}>
                                             <dt style={this.state.banner_pointer === index ? {'color':'#000'}:{}}>
@@ -90,3 +91,11 @@ export default class Carousel extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    let { banner_message} = state
+    return {
+        banner_message
+    }
+}
+export default connect(mapStateToProps)(Carousel)

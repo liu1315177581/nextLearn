@@ -30,11 +30,9 @@ class Index extends Component {
     }
 
     static async getInitialProps(context) {
-
         let res = null;
         let api = getConfig().publicRuntimeConfig.api;
         let data = {};
-
         if (context.req) {
             res = await fetch(api + '/v2/movie/in_theaters')
             data = await res.json()
