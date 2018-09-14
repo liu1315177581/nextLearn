@@ -11,7 +11,7 @@ import getConfig from 'next/config'
 import style from './index.less'
 import Carousel from '@/components/carousel' /* banner 模块 */
 import ContentList from '@/components/content_list' /* content 列表组件 */
-
+import { Player } from 'video-react';
 
 
 class Index extends Component {
@@ -103,6 +103,9 @@ class Index extends Component {
                 <Carousel/>
                 <ContentList/>
                 <Link href="/detail"><a>go to detail</a></Link>
+                <Player>
+                    <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
+                </Player>
             </Layout>
         )
     }

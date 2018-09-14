@@ -14,7 +14,7 @@ class MyApp extends App {
                 </Provider>
                 <style global jsx>
                 {`
-                    @import '../../_next/static/style.css'
+                    @import '../../_next/static/style.css';
                 `}
                 </style>
             </Container>
