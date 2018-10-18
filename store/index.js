@@ -22,14 +22,11 @@ const exampleInitialState = {
             btn_text: '综艺',
             key: 'variety'
         }, {
-            btn_text: '体育',
-            key: 'sports'
+            btn_text: '恐怖',
+            key: 'terror'
         }, {
             btn_text: '动漫',
             key: 'cartoon'
-        }, {
-            btn_text: '搞笑短视频',
-            key: 'short_video'
         }
     ],
     banner_message: [           /* 从视频数据中，取出对应的数据 */
