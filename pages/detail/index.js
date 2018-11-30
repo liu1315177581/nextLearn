@@ -23,10 +23,14 @@ class Index extends Component {
 
     }
     async switchSlideFun(index, id) {
+        /* 打开loading */
+        this.props.dispatch({ type: 'MARK_ONOFF', mark_onoff: true });
         let res = null;
         res = await fetch('v2/movie/subject/' + id)
         const data = await res.json()
         this.setState({ detail_message: data });
+        /* 关闭loading */
+        this.props.dispatch({ type: 'MARK_ONOFF', mark_onoff: false });
     }
 
     static async getInitialProps(context) {
@@ -107,7 +111,9 @@ class Index extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        mark_onoff: state.mark_onoff
+    }
 }
 
 export default connect(mapStateToProps)(Index)
